@@ -1,0 +1,1448 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+:root {
+    --bg: #090713;
+    --card: rgba(18, 13, 34, 0.86);
+
+    --input: rgba(255,255,255,0.045);
+
+    --text: #ffffff;
+    --muted: #777783;
+
+    --border: rgba(255,255,255,0.10);
+
+    --purple: #8b5cf6;
+    --purple-dark: #6d28d9;
+
+    --cyan: #06b6d4;
+
+    --pink: #ec4899;
+
+    --green: #22c55e;
+}
+
+
+/* =========================================
+   LIGHT MODE
+========================================= */
+
+body.light {
+
+    --bg: #f5f3fa;
+
+    --card: rgba(255,255,255,0.92);
+
+    --input: rgba(0,0,0,0.045);
+
+    --text: #111827;
+
+    --muted: #6b7280;
+
+    --border: rgba(0,0,0,0.10);
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    overflow: hidden;
+
+    transition: 0.5s;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: -10;
+
+    background: var(--bg);
+}
+
+
+/* =========================================
+   PURPLE GLOW
+========================================= */
+
+.glow {
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    filter: blur(140px);
+
+    opacity: .22;
+
+    background: var(--purple);
+
+    top: -300px;
+    left: -200px;
+
+    animation:
+        glowMove 10s ease-in-out infinite;
+}
+
+
+.glow2 {
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(140px);
+
+    opacity: .18;
+
+    background: var(--cyan);
+
+    bottom: -250px;
+    right: -150px;
+
+    animation:
+        glowMove2 12s ease-in-out infinite;
+}
+
+
+/* =========================================
+   GLOW ANIMATION
+========================================= */
+
+@keyframes glowMove {
+
+    0%, 100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(120px,80px);
+    }
+}
+
+
+@keyframes glowMove2 {
+
+    0%, 100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(-100px,-80px);
+    }
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.grid {
+
+    position: absolute;
+
+    width: 200%;
+    height: 200%;
+
+    left: -50%;
+    top: -20%;
+
+    background-image:
+
+        linear-gradient(
+            rgba(139,92,246,.07) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(139,92,246,.07) 1px,
+            transparent 1px
+        );
+
+    background-size: 60px 60px;
+
+    transform:
+        perspective(600px)
+        rotateX(65deg);
+
+    animation:
+        gridMove 15s linear infinite;
+}
+
+
+@keyframes gridMove {
+
+    from {
+
+        transform:
+            perspective(600px)
+            rotateX(65deg)
+            translateY(0);
+    }
+
+    to {
+
+        transform:
+            perspective(600px)
+            rotateX(65deg)
+            translateY(60px);
+    }
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.particles span {
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    opacity: .5;
+
+    animation:
+        particleMove 8s linear infinite;
+}
+
+
+.particles span:nth-child(1) {
+    left: 10%;
+    top: 80%;
+    animation-delay: 0s;
+}
+
+.particles span:nth-child(2) {
+    left: 20%;
+    top: 30%;
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(3) {
+    left: 35%;
+    top: 70%;
+    animation-delay: 4s;
+}
+
+.particles span:nth-child(4) {
+    left: 60%;
+    top: 25%;
+    animation-delay: 1s;
+}
+
+.particles span:nth-child(5) {
+    left: 75%;
+    top: 75%;
+    animation-delay: 3s;
+}
+
+.particles span:nth-child(6) {
+    left: 90%;
+    top: 40%;
+    animation-delay: 5s;
+}
+
+
+@keyframes particleMove {
+
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .7;
+    }
+
+    70% {
+        opacity: .7;
+    }
+
+    100% {
+        transform: translateY(-180px);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   SMALL FLOATING BACKGROUND PICTURES
+========================================= */
+
+.floating-pic {
+
+    position: absolute;
+
+    width: 80px;
+
+    opacity: .08;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    object-fit: contain;
+
+    filter:
+        blur(1px)
+        drop-shadow(
+            0 0 15px
+            rgba(139,92,246,.35)
+        );
+
+    z-index: 0;
+}
+
+
+/* =========================================
+   PICTURE 1
+========================================= */
+
+.pic1 {
+
+    top: 8%;
+    left: 5%;
+
+    animation:
+        float1 14s ease-in-out infinite;
+}
+
+
+/* =========================================
+   PICTURE 2
+========================================= */
+
+.pic2 {
+
+    bottom: 8%;
+    right: 5%;
+
+    width: 100px;
+
+    opacity: .07;
+
+    filter:
+        blur(1px)
+        drop-shadow(
+            0 0 15px
+            rgba(6,182,212,.35)
+        );
+
+    animation:
+        float2 18s ease-in-out infinite;
+}
+
+
+/* =========================================
+   PICTURE 3
+========================================= */
+
+.pic3 {
+
+    top: 55%;
+    right: 10%;
+
+    width: 60px;
+
+    opacity: .06;
+
+    filter:
+        blur(1px)
+        drop-shadow(
+            0 0 15px
+            rgba(236,72,153,.30)
+        );
+
+    animation:
+        float3 12s ease-in-out infinite;
+}
+
+
+/* =========================================
+   PICTURE 1 MOVEMENT
+========================================= */
+
+@keyframes float1 {
+
+    0% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    20% {
+
+        transform:
+            translate(120px,50px)
+            rotate(8deg)
+            scale(1.05);
+    }
+
+    40% {
+
+        transform:
+            translate(170px,150px)
+            rotate(-5deg)
+            scale(.95);
+    }
+
+    60% {
+
+        transform:
+            translate(60px,210px)
+            rotate(10deg)
+            scale(1.03);
+    }
+
+    80% {
+
+        transform:
+            translate(-70px,120px)
+            rotate(-7deg)
+            scale(.96);
+    }
+
+    100% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   PICTURE 2 MOVEMENT
+========================================= */
+
+@keyframes float2 {
+
+    0% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    20% {
+
+        transform:
+            translate(-100px,-60px)
+            rotate(-8deg)
+            scale(1.05);
+    }
+
+    40% {
+
+        transform:
+            translate(-180px,-20px)
+            rotate(6deg)
+            scale(.95);
+    }
+
+    60% {
+
+        transform:
+            translate(-130px,-130px)
+            rotate(-10deg)
+            scale(1.03);
+    }
+
+    80% {
+
+        transform:
+            translate(-40px,-80px)
+            rotate(7deg)
+            scale(.97);
+    }
+
+    100% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   PICTURE 3 MOVEMENT
+========================================= */
+
+@keyframes float3 {
+
+    0% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    20% {
+
+        transform:
+            translate(-80px,60px)
+            rotate(10deg)
+            scale(1.05);
+    }
+
+    40% {
+
+        transform:
+            translate(-30px,-100px)
+            rotate(-8deg)
+            scale(.95);
+    }
+
+    60% {
+
+        transform:
+            translate(100px,-50px)
+            rotate(12deg)
+            scale(1.03);
+    }
+
+    80% {
+
+        transform:
+            translate(60px,80px)
+            rotate(-7deg)
+            scale(.96);
+    }
+
+    100% {
+
+        transform:
+            translate(0,0)
+            rotate(0deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   LOGIN CONTAINER
+========================================= */
+
+.login-container {
+
+    position: relative;
+
+    width: 430px;
+
+    padding: 2px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            var(--purple),
+            var(--cyan),
+            transparent
+        );
+
+    background-size: 300% 300%;
+
+    animation:
+        borderMove 7s ease infinite;
+
+    box-shadow:
+
+        0 0 80px
+        rgba(139,92,246,.12),
+
+        0 30px 100px
+        rgba(0,0,0,.55);
+
+    /* LAGING NASA HARAP NG PICTURES */
+    z-index: 10;
+}
+
+
+/* =========================================
+   BORDER ANIMATION
+========================================= */
+
+@keyframes borderMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.login-card {
+
+    position: relative;
+
+    padding: 45px 42px;
+
+    border-radius: 29px;
+
+    background: var(--card);
+
+    backdrop-filter: blur(30px);
+
+    -webkit-backdrop-filter: blur(30px);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   CARD LIGHT
+========================================= */
+
+.login-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    background: var(--purple);
+
+    filter: blur(100px);
+
+    opacity: .08;
+
+    top: -120px;
+    right: -100px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   TOP STATUS
+========================================= */
+
+.status {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 25px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+
+    animation:
+        pulse 1.8s infinite;
+}
+
+
+@keyframes pulse {
+
+    0%,100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        opacity: .5;
+
+        transform:
+            scale(.7);
+    }
+}
+
+
+/* =========================================
+   THEME BUTTON
+========================================= */
+
+.theme-btn {
+
+    position: absolute;
+
+    right: 18px;
+    top: 18px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--input);
+
+    color:
+        var(--text);
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition: .3s;
+
+    z-index: 20;
+}
+
+
+.theme-btn:hover {
+
+    transform:
+        rotate(25deg)
+        scale(1.1);
+
+    border-color:
+        var(--purple);
+
+    box-shadow:
+        0 0 20px
+        rgba(139,92,246,.35);
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+
+    position: relative;
+
+    width: 78px;
+    height: 78px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 24px;
+
+    color: white;
+
+    font-size: 32px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #6366f1,
+            var(--cyan)
+        );
+
+    box-shadow:
+
+        0 0 40px
+        rgba(139,92,246,.35),
+
+        inset 0 0 20px
+        rgba(255,255,255,.15);
+
+    animation:
+        logoFloat 4s ease-in-out infinite;
+}
+
+
+.logo::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -8px;
+
+    border-radius: 28px;
+
+    border:
+        1px solid
+        rgba(139,92,246,.4);
+
+    animation:
+        ring 2.5s infinite;
+}
+
+
+@keyframes logoFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+@keyframes ring {
+
+    0% {
+
+        transform:
+            scale(.9);
+
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            scale(1.15);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+h1 {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-size: 32px;
+
+    letter-spacing: -1.5px;
+}
+
+
+.subtitle {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 8px;
+
+    margin-bottom: 32px;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-group {
+
+    margin-bottom: 19px;
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    letter-spacing: .5px;
+}
+
+
+.input-wrapper {
+
+    position: relative;
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    left: 16px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    opacity: .45;
+
+    font-size: 14px;
+
+    z-index: 2;
+}
+
+
+input {
+
+    width: 100%;
+
+    height: 54px;
+
+    padding:
+        0 45px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid
+        var(--border);
+
+    outline: none;
+
+    background:
+        var(--input);
+
+    color:
+        var(--text);
+
+    font-size: 14px;
+
+    transition: .3s;
+}
+
+
+input::placeholder {
+
+    color:
+        var(--muted);
+
+    opacity: .55;
+}
+
+
+input:focus {
+
+    border-color:
+        var(--purple);
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(139,92,246,.08),
+
+        0 0 25px
+        rgba(139,92,246,.08);
+}
+
+
+/* =========================================
+   SHOW PASSWORD
+========================================= */
+
+.show-password {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: none;
+
+    background: none;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.show-password:hover {
+
+    color:
+        var(--text);
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.options {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin: 6px 0 24px;
+
+    font-size: 12px;
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--muted);
+}
+
+
+.remember input {
+
+    width: auto;
+
+    height: auto;
+
+    accent-color:
+        var(--purple);
+}
+
+
+.forgot {
+
+    color:
+        var(--purple);
+
+    text-decoration: none;
+}
+
+
+.forgot:hover {
+
+    color:
+        var(--cyan);
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.login-btn {
+
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            var(--purple),
+            #6366f1,
+            var(--cyan)
+        );
+
+    background-size:
+        200% 100%;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: .4px;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 10px 35px
+        rgba(99,102,241,.25);
+
+    animation:
+        buttonGradient 5s ease infinite;
+
+    transition: .3s;
+}
+
+
+@keyframes buttonGradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.login-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+
+        0 15px 45px
+        rgba(99,102,241,.4);
+}
+
+
+.login-btn:active {
+
+    transform:
+        scale(.98);
+}
+
+
+/* =========================================
+   BUTTON SHINE
+========================================= */
+
+.login-btn::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 60%;
+
+    height: 100%;
+
+    top: 0;
+
+    left: -100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.3),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition: .7s;
+}
+
+
+.login-btn:hover::before {
+
+    left: 130%;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        var(--border);
+}
+
+
+/* =========================================
+   SIGN UP
+========================================= */
+
+.signup {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.signup a {
+
+    color:
+        var(--purple);
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+
+.signup a:hover {
+
+    color:
+        var(--cyan);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width: 500px) {
+
+    .login-container {
+
+        width: 90%;
+    }
+
+    .login-card {
+
+        padding:
+            38px 25px;
+    }
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+
+    /* Smaller images on phone */
+
+    .pic1 {
+        width: 55px;
+    }
+
+    .pic2 {
+        width: 70px;
+    }
+
+    .pic3 {
+        width: 45px;
+    }
+
+
+    /* Smaller movement */
+
+    @keyframes float1 {
+
+        0%,100% {
+            transform:
+                translate(0,0)
+                rotate(0deg);
+        }
+
+        50% {
+            transform:
+                translate(70px,70px)
+                rotate(8deg);
+        }
+    }
+
+
+    @keyframes float2 {
+
+        0%,100% {
+            transform:
+                translate(0,0)
+                rotate(0deg);
+        }
+
+        50% {
+            transform:
+                translate(-70px,-60px)
+                rotate(-8deg);
+        }
+    }
+
+
+    @keyframes float3 {
+
+        0%,100% {
+            transform:
+                translate(0,0)
+                rotate(0deg);
+        }
+
+        50% {
+            transform:
+                translate(-50px,60px)
+                rotate(8deg);
+        }
+    }
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}

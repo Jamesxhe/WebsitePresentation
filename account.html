@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
+  <title>My Account | MarketHub</title>
+  <style>
+    :root { font-family:Inter,"Segoe UI",Arial,sans-serif;color:#111b2e;background:#f7f9fc;--blue:#0759e8;--line:#e3e9f2;--muted:#66738a; }
+    * { box-sizing:border-box; } body { margin:0; } button,input,select { font:inherit; }
+    header { display:flex;align-items:center;justify-content:space-between;padding:16px max(20px,calc((100vw - 1120px)/2));background:#fff;border-bottom:1px solid var(--line); }
+    .brand { font-size:22px;font-weight:800;letter-spacing:-.7px;color:#111b2e;text-decoration:none; }.brand span { color:var(--blue); }
+    .header-link { color:var(--blue);text-decoration:none;font-size:13px;font-weight:700; }
+    main { width:min(1120px,calc(100% - 36px));margin:30px auto 60px; }.heading { margin-bottom:20px; }.eyebrow { color:var(--blue);font-size:11px;font-weight:750;letter-spacing:1px;text-transform:uppercase; }.heading h1 { margin:7px 0;font-size:30px;letter-spacing:-1px; }.heading p { margin:0;color:var(--muted);font-size:13px; }
+    .layout { display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.5fr);gap:18px;align-items:start; }.card { background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 4px 16px #23355208; }.profile { padding:22px; }.card-title { margin:0 0 5px;font-size:17px; }.card-subtitle { margin:0 0 19px;color:var(--muted);font-size:12px;line-height:1.5; }
+    .account-number { padding:12px 13px;margin-bottom:18px;border-radius:9px;background:#edf3ff; }.account-number small { display:block;color:#50617e;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px; }.account-number strong { display:block;margin-top:4px;color:var(--blue);font-size:19px;letter-spacing:.4px; }
+    .field { display:grid;gap:6px;margin:13px 0; }.field label { color:#35445e;font-size:11px;font-weight:700; }.field input,.field select { width:100%;height:40px;padding:0 11px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#111b2e;font-size:12px; }.field input:focus,.field select:focus { outline:2px solid #0759e82b;border-color:var(--blue); }
+    .field input[readonly],.field select:disabled { background:#f2f5f9;color:#526078;cursor:default; }
+    .button { min-height:39px;padding:0 15px;border:0;border-radius:7px;background:var(--blue);color:#fff;font-size:12px;font-weight:750;cursor:pointer; }.button.secondary { margin-left:5px;background:#eef2f7;color:#334158; }.button:disabled { opacity:.6;cursor:wait; }.message { min-height:18px;margin:11px 0 0;color:#148052;font-size:12px; }
+    .orders { padding:0;overflow:hidden; }.orders-head { padding:19px 20px;border-bottom:1px solid var(--line); }.orders-head h2 { margin:0;font-size:17px; }.orders-head p { margin:5px 0 0;color:var(--muted);font-size:12px; }.order-list { display:grid; }.order { padding:17px 20px;border-bottom:1px solid var(--line); }.order:last-child { border-bottom:0; }.order-top { display:flex;justify-content:space-between;gap:12px;align-items:center; }.order-id { font-size:13px;font-weight:750; }.order-date { margin-top:4px;color:var(--muted);font-size:11px; }.status { padding:5px 9px;border-radius:20px;background:#fff3dc;color:#9b6418;font-size:10px;font-weight:750;text-transform:capitalize; }.status.completed,.status.delivered { background:#e7f6ed;color:#18804d; }.items { margin:13px 0 9px;padding:0;list-style:none;display:grid;gap:7px; }.items li { display:flex;justify-content:space-between;gap:10px;color:#53617a;font-size:11px; }.order-total { display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid #eef1f5;font-size:12px;font-weight:750; }.empty,.loading,.error { padding:36px 20px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6; }.error { color:#b42345; }
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.heading h1{font-size:26px}}
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="market.html">Market<span>Hub</span></a><a class="header-link" href="market.html">← Back to shop</a></header>
+  <main>
+    <div class="heading"><div class="eyebrow">Customer account</div><h1>My account</h1><p>Manage your profile details and review orders placed through MarketHub.</p></div>
+    <div class="layout">
+      <section class="card profile"><h2 class="card-title">Profile information</h2><p class="card-subtitle">Your account number is assigned by the system and cannot be changed.</p><div class="account-number"><small>System account number</small><strong id="accountNumber">Loading…</strong></div>
+        <form id="profileForm"><div class="field"><label for="fullName">Full name</label><input id="fullName" name="fullName" maxlength="150" autocomplete="name" readonly></div><div class="field"><label for="email">Email address</label><input id="email" type="email" readonly></div><div class="field"><label for="age">Age</label><input id="age" name="age" type="number" min="1" max="120" readonly></div><div class="field"><label for="sex">Sex</label><select id="sex" name="sex" disabled><option value="">Select an option</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select></div><div class="field"><label for="address">Address</label><input id="address" name="address" maxlength="1000" autocomplete="street-address" readonly></div><div class="field"><label for="location">Location</label><input id="location" name="location" maxlength="255" autocomplete="address-level2" placeholder="City, province, or area" readonly></div><div class="field"><label>Terms and Conditions</label><input id="termsStatus" type="text" readonly value="Loading acceptance status…"></div><button class="button" id="editProfile" type="button">Edit profile</button><div id="profileEditActions" hidden><button class="button" id="saveProfile" type="submit">Save changes</button> <button class="button secondary" id="cancelProfile" type="button">Cancel</button></div><p class="message" id="profileMessage" role="status"></p></form>
+      </section>
+      <section class="card orders"><div class="orders-head"><h2>Order history</h2><p>Your past purchases and their latest recorded status.</p></div><div class="order-list" id="orderList"><div class="loading">Loading your orders…</div></div></section>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const $ = (selector) => document.querySelector(selector);
+      const currency = new Intl.NumberFormat("en-PH", { style:"currency", currency:"PHP" });
+      let savedProfile = null;
+      const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
+      const dateText = (value) => { const date = new Date(String(value || "").replace(" ","T")); return Number.isNaN(date.getTime()) ? "Date unavailable" : new Intl.DateTimeFormat("en-PH",{year:"numeric",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}).format(date); };
+      function showOrders(orders) {
+        if (!orders.length) { $("#orderList").innerHTML = '<div class="empty">No orders yet. Your completed checkout orders will appear here.</div>'; return; }
+        $("#orderList").innerHTML = orders.map((order) => {
+          const status = String(order.status || "pending").toLowerCase();
+          const items = (order.items || []).map((item) => `<li><span>${esc(item.productName)} × ${Number(item.quantity) || 0}</span><span>${currency.format((Number(item.unitPrice) || 0) * (Number(item.quantity) || 0))}</span></li>`).join("");
+          return `<article class="order"><div class="order-top"><div><div class="order-id">Order #${esc(order.id)}</div><div class="order-date">${esc(dateText(order.createdAt))}</div></div><span class="status ${esc(status)}">${esc(status.replaceAll("_"," "))}</span></div><ul class="items">${items}</ul><div class="order-total"><span>Total · ${esc(String(order.paymentMethod || "cash_on_delivery").replaceAll("_"," "))}</span><span>${currency.format(Number(order.total) || 0)}</span></div></article>`;
+        }).join("");
+      }
+      async function loadAccount() {
+        try {
+          const response = await fetch("auth.php?action=account", { headers:{Accept:"application/json"}, cache:"no-store" });
+          const data = await response.json();
+          if (response.status === 401) { location.replace("index.html"); return; }
+          if (!response.ok) throw new Error(data.error || "Could not load your account.");
+          const profile = data.profile;
+          $("#accountNumber").textContent = profile.accountNumber;
+          $("#email").value = profile.email || "";
+          $("#fullName").value = profile.fullName || "";
+          $("#age").value = profile.age || "";
+          $("#sex").value = profile.sex || "";
+          $("#address").value = profile.address || "";
+          $("#location").value = profile.location || "";
+          $("#termsStatus").value = profile.termsAcceptedAt ? `Accepted ${dateText(profile.termsAcceptedAt)}` : "Not recorded for this account";
+          savedProfile = { fullName:profile.fullName || "", age:profile.age || "", sex:profile.sex || "", address:profile.address || "", location:profile.location || "" };
+          showOrders(Array.isArray(data.orders) ? data.orders : []);
+        } catch (error) {
+          $("#orderList").innerHTML = `<div class="error">${esc(error.message || "Could not load account details.")}</div>`;
+        }
+      }
+      function setProfileEditable(editable) {
+        ["fullName", "age", "address", "location"].forEach((id) => { $("#" + id).readOnly = !editable; });
+        $("#sex").disabled = !editable;
+        $("#editProfile").hidden = editable;
+        $("#profileEditActions").hidden = !editable;
+      }
+      function restoreProfile() {
+        if (!savedProfile) return;
+        Object.entries(savedProfile).forEach(([key, value]) => { $("#" + key).value = value; });
+      }
+      $("#editProfile").addEventListener("click", () => { $("#profileMessage").textContent = ""; setProfileEditable(true); $("#fullName").focus(); });
+      $("#cancelProfile").addEventListener("click", () => { restoreProfile(); setProfileEditable(false); $("#profileMessage").textContent = ""; });
+      $("#profileForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const button = $("#saveProfile"), message = $("#profileMessage");
+        button.disabled = true; button.textContent = "Saving…"; message.textContent = "";
+        try {
+          const response = await fetch("auth.php?action=account", { method:"POST", headers:{"Content-Type":"application/json",Accept:"application/json"}, body:JSON.stringify({fullName:$("#fullName").value.trim(),age:$("#age").value,sex:$("#sex").value,address:$("#address").value.trim(),location:$("#location").value.trim()}) });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || "Could not save your profile.");
+          savedProfile = { fullName:$("#fullName").value, age:$("#age").value, sex:$("#sex").value, address:$("#address").value, location:$("#location").value };
+          message.textContent = "Profile saved.";
+          setProfileEditable(false);
+        } catch (error) { message.style.color = "#b42345"; message.textContent = error.message || "Could not save your profile."; }
+        finally { button.disabled = false; button.textContent = "Save profile"; }
+      });
+      loadAccount();
+    })();
+  </script>
+</body>
+</html>

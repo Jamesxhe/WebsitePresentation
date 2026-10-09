@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RTXMarket | Sign in</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+
+        /* =========================================
+           VARIABLES
+        ========================================= */
+
+        :root {
+
+            --bg: #090713;
+
+            --card: rgba(18, 13, 34, 0.86);
+
+            --input: rgba(255,255,255,0.045);
+
+            --text: #ffffff;
+
+            --muted: #777783;
+
+            --border: rgba(255,255,255,0.10);
+
+            --purple: #8b5cf6;
+
+            --purple-dark: #6d28d9;
+
+            --cyan: #06b6d4;
+
+            --pink: #ec4899;
+
+            --green: #22c55e;
+        }
+
+
+        /* =========================================
+           LIGHT MODE
+        ========================================= */
+
+        body.light {
+
+            --bg: #f5f3fa;
+
+            --card: rgba(255,255,255,0.92);
+
+            --input: rgba(0,0,0,0.045);
+
+            --text: #111827;
+
+            --muted: #6b7280;
+
+            --border: rgba(0,0,0,0.10);
+            --auth-error: #b42345;
+        }
+
+
+        /* =========================================
+           BODY
+        ========================================= */
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            overflow: hidden;
+
+            transition: 0.5s;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        .background {
+
+            position: fixed;
+
+            inset: 0;
+
+            overflow: hidden;
+
+            z-index: -10;
+
+            background: var(--bg);
+        }
+
+
+        /* =========================================
+           PURPLE GLOW
+        ========================================= */
+
+        .glow {
+
+            position: absolute;
+
+            width: 600px;
+
+            height: 600px;
+
+            border-radius: 50%;
+
+            filter: blur(140px);
+
+            opacity: .22;
+
+            background: var(--purple);
+
+            top: -300px;
+
+            left: -200px;
+
+            animation:
+                glowMove 10s ease-in-out infinite;
+        }
+
+
+        .glow2 {
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 500px;
+
+            border-radius: 50%;
+
+            filter: blur(140px);
+
+            opacity: .18;
+
+            background: var(--cyan);
+
+            bottom: -250px;
+
+            right: -150px;
+
+            animation:
+                glowMove2 12s ease-in-out infinite;
+        }
+
+
+        /* =========================================
+           GLOW ANIMATION
+        ========================================= */
+
+        @keyframes glowMove {
+
+            0%, 100% {
+                transform: translate(0,0);
+            }
+
+            50% {
+                transform: translate(120px,80px);
+            }
+        }
+
+
+        @keyframes glowMove2 {
+
+            0%, 100% {
+                transform: translate(0,0);
+            }
+
+            50% {
+                transform: translate(-100px,-80px);
+            }
+        }
+
+
+        /* =========================================
+           GRID
+        ========================================= */
+
+        .grid {
+
+            position: absolute;
+
+            width: 200%;
+
+            height: 200%;
+
+            left: -50%;
+
+            top: -20%;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(139,92,246,.07) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(139,92,246,.07) 1px,
+                    transparent 1px
+                );
+
+            background-size: 60px 60px;
+
+            transform:
+                perspective(600px)
+                rotateX(65deg);
+
+            animation:
+                gridMove 15s linear infinite;
+        }
+
+
+        @keyframes gridMove {
+
+            from {
+
+                transform:
+                    perspective(600px)
+                    rotateX(65deg)
+                    translateY(0);
+            }
+
+            to {
+
+                transform:
+                    perspective(600px)
+                    rotateX(65deg)
+                    translateY(60px);
+            }
+        }
+
+
+        /* =========================================
+           PARTICLES
+        ========================================= */
+
+        .particles span {
+
+            position: absolute;
+
+            width: 2px;
+
+            height: 2px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            opacity: .5;
+
+            animation:
+                particleMove 8s linear infinite;
+        }
+
+
+        .particles span:nth-child(1) {
+
+            left: 10%;
+
+            top: 80%;
+
+            animation-delay: 0s;
+        }
+
+
+        .particles span:nth-child(2) {
+
+            left: 20%;
+
+            top: 30%;
+
+            animation-delay: 2s;
+        }
+
+
+        .particles span:nth-child(3) {
+
+            left: 35%;
+
+            top: 70%;
+
+            animation-delay: 4s;
+        }
+
+
+        .particles span:nth-child(4) {
+
+            left: 60%;
+
+            top: 25%;
+
+            animation-delay: 1s;
+        }
+
+
+        .particles span:nth-child(5) {
+
+            left: 75%;
+
+            top: 75%;
+
+            animation-delay: 3s;
+        }
+
+
+        .particles span:nth-child(6) {
+
+            left: 90%;
+
+            top: 40%;
+
+            animation-delay: 5s;
+        }
+
+
+        @keyframes particleMove {
+
+            0% {
+
+                transform: translateY(0);
+
+                opacity: 0;
+            }
+
+            30% {
+
+                opacity: .7;
+            }
+
+            70% {
+
+                opacity: .7;
+            }
+
+            100% {
+
+                transform:
+                    translateY(-180px);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================
+           FLOATING BACKGROUND PICTURES
+        ========================================= */
+
+        .floating-pic {
+
+            position: absolute;
+
+            width: 80px;
+
+            opacity: .16;
+
+            pointer-events: none;
+
+            user-select: none;
+
+            object-fit: contain;
+
+            filter:
+
+                blur(1px)
+
+                drop-shadow(
+                    0 0 15px
+                    rgba(139,92,246,.35)
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================================
+           PICTURE 1
+        ========================================= */
+
+        .pic1 {
+
+            top: 8%;
+
+            left: 5%;
+
+            animation:
+                float1 7s ease-in-out infinite;
+        }
+
+
+        /* =========================================
+           PICTURE 2
+        ========================================= */
+
+        .pic2 {
+
+            bottom: 8%;
+
+            right: 5%;
+
+            width: 100px;
+
+            opacity: .13;
+
+            filter:
+
+                blur(1px)
+
+                drop-shadow(
+                    0 0 15px
+                    rgba(6,182,212,.35)
+                );
+
+            animation:
+                float2 9s ease-in-out infinite;
+        }
+
+
+        /* =========================================
+           PICTURE 3
+        ========================================= */
+
+        .pic3 {
+
+            top: 55%;
+
+            right: 10%;
+
+            width: 60px;
+
+            opacity: .12;
+
+            filter:
+
+                blur(1px)
+
+                drop-shadow(
+                    0 0 15px
+                    rgba(236,72,153,.30)
+                );
+
+            animation:
+                float3 6s ease-in-out infinite;
+        }
+
+
+        /* =========================================
+           PICTURE 1 MOVEMENT
+        ========================================= */
+
+        @keyframes float1 {
+
+            0% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+
+            20% {
+
+                transform:
+                    translate(120px,50px)
+                    rotate(8deg)
+                    scale(1.05);
+            }
+
+            40% {
+
+                transform:
+                    translate(170px,150px)
+                    rotate(-5deg)
+                    scale(.95);
+            }
+
+            60% {
+
+                transform:
+                    translate(60px,210px)
+                    rotate(10deg)
+                    scale(1.03);
+            }
+
+            80% {
+
+                transform:
+                    translate(-70px,120px)
+                    rotate(-7deg)
+                    scale(.96);
+            }
+
+            100% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           PICTURE 2 MOVEMENT
+        ========================================= */
+
+        @keyframes float2 {
+
+            0% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+
+            20% {
+
+                transform:
+                    translate(-100px,-60px)
+                    rotate(-8deg)
+                    scale(1.05);
+            }
+
+            40% {
+
+                transform:
+                    translate(-180px,-20px)
+                    rotate(6deg)
+                    scale(.95);
+            }
+
+            60% {
+
+                transform:
+                    translate(-130px,-130px)
+                    rotate(-10deg)
+                    scale(1.03);
+            }
+
+            80% {
+
+                transform:
+                    translate(-40px,-80px)
+                    rotate(7deg)
+                    scale(.97);
+            }
+
+            100% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           PICTURE 3 MOVEMENT
+        ========================================= */
+
+        @keyframes float3 {
+
+            0% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+
+            20% {
+
+                transform:
+                    translate(-80px,60px)
+                    rotate(10deg)
+                    scale(1.05);
+            }
+
+            40% {
+
+                transform:
+                    translate(-30px,-100px)
+                    rotate(-8deg)
+                    scale(.95);
+            }
+
+            60% {
+
+                transform:
+                    translate(100px,-50px)
+                    rotate(12deg)
+                    scale(1.03);
+            }
+
+            80% {
+
+                transform:
+                    translate(60px,80px)
+                    rotate(-7deg)
+                    scale(.96);
+            }
+
+            100% {
+
+                transform:
+                    translate(0,0)
+                    rotate(0deg)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================
+           LOGIN CONTAINER
+        ========================================= */
+
+        .login-container {
+
+            position: relative;
+
+            width: 430px;
+
+            padding: 2px;
+
+            border-radius: 30px;
+
+            background:
+
+                linear-gradient(
+                    120deg,
+                    transparent,
+                    var(--purple),
+                    var(--cyan),
+                    transparent
+                );
+
+            background-size: 300% 300%;
+
+            animation:
+                borderMove 7s ease infinite;
+
+            box-shadow:
+
+                0 0 80px
+                rgba(139,92,246,.12),
+
+                0 30px 100px
+                rgba(0,0,0,.55);
+
+            z-index: 10;
+        }
+
+
+        @keyframes borderMove {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        /* =========================================
+           LOGIN CARD
+        ========================================= */
+
+        .login-card {
+
+            position: relative;
+
+            padding: 45px 42px;
+
+            border-radius: 29px;
+
+            background: var(--card);
+
+            backdrop-filter: blur(30px);
+
+            -webkit-backdrop-filter: blur(30px);
+
+            overflow: hidden;
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 250px;
+
+            background: var(--purple);
+
+            filter: blur(100px);
+
+            opacity: .08;
+
+            top: -120px;
+
+            right: -100px;
+
+            pointer-events: none;
+        }
+
+        .register-only { display:none; }
+        body.registering { overflow-y:auto; align-items:flex-start; padding:24px 0; }
+        body.registering .login-container { margin:auto; }
+        .register-details { margin:0 0 14px; padding:13px 14px 1px; border:1px solid var(--border); border-radius:12px; background:var(--input); }
+        .register-details .input-group { margin-bottom:12px; }
+        .register-details input:not([type="checkbox"]), .register-details select { width:100%; height:42px; padding:0 13px; border:1px solid var(--border); border-radius:10px; background:var(--input); color:var(--text); }
+        .register-details .terms-check { display:flex; align-items:flex-start; gap:9px; margin:9px 0 12px; color:var(--muted); font-size:11px; line-height:1.5; }
+        .register-details .terms-check input { margin-top:2px; accent-color:var(--purple); }
+        .register-details .terms-copy { margin:-4px 0 12px; color:var(--muted); font-size:10px; line-height:1.5; }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 25px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 10px var(--green);
+
+            animation:
+                pulse 1.8s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0%,100% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+
+            50% {
+
+                opacity: .5;
+
+                transform:
+                    scale(.7);
+            }
+        }
+
+
+        /* =========================================
+           THEME BUTTON
+        ========================================= */
+
+        .theme-btn {
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 18px;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                var(--input);
+
+            color:
+                var(--text);
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: .3s;
+
+            z-index: 20;
+        }
+
+
+        .theme-btn:hover {
+
+            transform:
+                rotate(25deg)
+                scale(1.1);
+
+            border-color:
+                var(--purple);
+
+            box-shadow:
+                0 0 20px
+                rgba(139,92,246,.35);
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+
+            position: relative;
+
+            width: 78px;
+
+            height: 78px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 24px;
+
+            color: white;
+
+            font-size: 32px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    #6366f1,
+                    var(--cyan)
+                );
+
+            box-shadow:
+
+                0 0 40px
+                rgba(139,92,246,.35),
+
+                inset 0 0 20px
+                rgba(255,255,255,.15);
+
+            animation:
+                logoFloat 4s ease-in-out infinite;
+        }
+
+
+        .logo::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -8px;
+
+            border-radius: 28px;
+
+            border:
+                1px solid
+                rgba(139,92,246,.4);
+
+            animation:
+                ring 2.5s infinite;
+        }
+
+
+        @keyframes logoFloat {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+
+        @keyframes ring {
+
+            0% {
+
+                transform:
+                    scale(.9);
+
+                opacity: 0;
+            }
+
+            50% {
+
+                opacity: 1;
+            }
+
+            100% {
+
+                transform:
+                    scale(1.15);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================
+           TITLE
+        ========================================= */
+
+        h1 {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            font-size: 32px;
+
+            letter-spacing: -1.5px;
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-top: 8px;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* =========================================
+           INPUT
+        ========================================= */
+
+        .input-group {
+
+            margin-bottom: 19px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            color: var(--muted);
+
+            letter-spacing: .5px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            opacity: .45;
+
+            font-size: 14px;
+
+            z-index: 2;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 54px;
+
+            padding:
+                0 45px;
+
+            border-radius: 14px;
+
+            border:
+                1px solid
+                var(--border);
+
+            outline: none;
+
+            background:
+                var(--input);
+
+            color:
+                var(--text);
+
+            font-size: 14px;
+
+            transition: .3s;
+        }
+
+
+        input::placeholder {
+
+            color:
+                var(--muted);
+
+            opacity: .55;
+        }
+
+
+        input:focus {
+
+            border-color:
+                var(--purple);
+
+            box-shadow:
+
+                0 0 0 4px
+                rgba(139,92,246,.08),
+
+                0 0 25px
+                rgba(139,92,246,.08);
+        }
+
+
+        /* =========================================
+           SHOW PASSWORD
+        ========================================= */
+
+        .show-password {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: none;
+
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+
+        .show-password:hover {
+
+            color:
+                var(--text);
+        }
+
+
+        /* =========================================
+           OPTIONS
+        ========================================= */
+
+        .options {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            margin: 6px 0 24px;
+
+            font-size: 12px;
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--muted);
+        }
+
+
+        .remember input {
+
+            width: auto;
+
+            height: auto;
+
+            accent-color:
+                var(--purple);
+        }
+
+
+        .forgot {
+
+            color:
+                var(--purple);
+
+            text-decoration: none;
+        }
+
+
+        .forgot:hover {
+
+            color:
+                var(--cyan);
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+        ========================================= */
+
+        .login-btn {
+
+            position: relative;
+
+            overflow: hidden;
+
+            width: 100%;
+
+            height: 55px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background:
+
+                linear-gradient(
+                    100deg,
+                    var(--purple),
+                    #6366f1,
+                    var(--cyan)
+                );
+
+            background-size:
+                200% 100%;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            letter-spacing: .4px;
+
+            cursor: pointer;
+
+            box-shadow:
+
+                0 10px 35px
+                rgba(99,102,241,.25);
+
+            animation:
+                buttonGradient 5s ease infinite;
+
+            transition: .3s;
+        }
+
+
+        @keyframes buttonGradient {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        .login-btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+
+                0 15px 45px
+                rgba(99,102,241,.4);
+        }
+
+
+        .login-btn:active {
+
+            transform:
+                scale(.98);
+        }
+
+
+        /* =========================================
+           BUTTON SHINE
+        ========================================= */
+
+        .login-btn::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 60%;
+
+            height: 100%;
+
+            top: 0;
+
+            left: -100%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.3),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition: .7s;
+        }
+
+
+        .login-btn:hover::before {
+
+            left: 130%;
+        }
+
+
+        /* =========================================
+           DIVIDER
+        ========================================= */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 25px 0;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .divider::before,
+        .divider::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background:
+                var(--border);
+        }
+
+
+        /* =========================================
+           SIGN UP
+        ========================================= */
+
+        .signup {
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        .signup a {
+
+            color:
+                var(--purple);
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        .signup a:hover {
+
+            color:
+                var(--cyan);
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media(max-width: 500px) {
+
+            .login-container {
+
+                width: 90%;
+            }
+
+
+            .login-card {
+
+                padding:
+                    38px 25px;
+            }
+
+
+            h1 {
+
+                font-size: 27px;
+            }
+
+
+            .pic1 {
+
+                width: 55px;
+            }
+
+
+            .pic2 {
+
+                width: 70px;
+            }
+
+
+            .pic3 {
+
+                width: 45px;
+            }
+
+
+            @keyframes float1 {
+
+                0%,100% {
+
+                    transform:
+                        translate(0,0)
+                        rotate(0deg);
+                }
+
+                50% {
+
+                    transform:
+                        translate(70px,70px)
+                        rotate(8deg);
+                }
+            }
+
+
+            @keyframes float2 {
+
+                0%,100% {
+
+                    transform:
+                        translate(0,0)
+                        rotate(0deg);
+                }
+
+                50% {
+
+                    transform:
+                        translate(-70px,-60px)
+                        rotate(-8deg);
+                }
+            }
+
+
+            @keyframes float3 {
+
+                0%,100% {
+
+                    transform:
+                        translate(0,0)
+                        rotate(0deg);
+                }
+
+                50% {
+
+                    transform:
+                        translate(-50px,60px)
+                        rotate(8deg);
+                }
+            }
+        }
+
+
+        /* =========================================
+           REDUCE MOTION
+        ========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+            }
+
+            .floating-pic.pic1 {
+                animation: gentleFloat1 10s ease-in-out infinite !important;
+            }
+
+            .floating-pic.pic2 {
+                animation: gentleFloat2 12s ease-in-out infinite !important;
+            }
+
+            .floating-pic.pic3 {
+                animation: gentleFloat3 9s ease-in-out infinite !important;
+            }
+
+            @keyframes gentleFloat1 {
+                0%, 100% { transform: translate(0, 0) rotate(0); }
+                50% { transform: translate(26px, 18px) rotate(3deg); }
+            }
+
+            @keyframes gentleFloat2 {
+                0%, 100% { transform: translate(0, 0) rotate(0); }
+                50% { transform: translate(-22px, -16px) rotate(-3deg); }
+            }
+
+            @keyframes gentleFloat3 {
+                0%, 100% { transform: translate(0, 0) rotate(0); }
+                50% { transform: translate(-18px, 22px) rotate(3deg); }
+            }
+        }
+
+        /* MarketHub sign-in layout */
+        body { min-height:100vh; height:auto; overflow-x:hidden; overflow-y:auto; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(420px,.9fr); grid-template-rows:70px minmax(660px,1fr) 62px; align-items:stretch; justify-content:stretch; padding:0; background:#f3f6fc; color:#111b32; transition:none; }
+        .background { z-index:-1; background:radial-gradient(ellipse at 25% 45%,#e1edff 0,transparent 55%),#f6f8fc; }
+        .glow,.glow2,.grid,.particles,.floating-pic { display:none!important; }
+        .market-header { grid-column:1/-1;grid-row:1;display:flex;align-items:center;gap:28px;padding:0 max(26px,calc((100vw - 1380px)/2));background:rgba(255,255,255,.94);border-bottom:1px solid #e1e7f0; }
+        .market-logo { flex:0 0 auto;color:#111b32;text-decoration:none;font-size:25px;font-weight:800;letter-spacing:-1px; }.market-logo span { color:#0861ec; }
+        .header-search { flex:1;max-width:650px;height:42px;display:flex;border:1px solid #dce4f0;border-radius:9px;background:#f5f7fb;overflow:hidden; }.header-search input { min-width:0;flex:1;border:0;outline:0;padding:0 16px;background:transparent;color:#253752;font:14px "Segoe UI",Arial,sans-serif; }.header-search button { width:50px;border:0;background:#0861ec;color:#fff;font-size:18px;cursor:pointer; }
+        .header-links { display:flex;align-items:center;gap:24px;margin-left:auto;white-space:nowrap; }.header-links a { color:#263651;text-decoration:none;font-size:13px;font-weight:650; }.header-links a:hover { color:#0861ec; }
+        .promo-panel { grid-column:1;grid-row:2;min-width:0;display:grid;grid-template-columns:minmax(220px,.82fr) minmax(280px,1.18fr);gap:18px;align-items:center;padding:38px 18px 38px max(30px,calc((100vw - 1380px)/2)); }
+        .promo-copy h2 { margin:0;color:#111b32;font-size:clamp(34px,4vw,57px);line-height:1.06;letter-spacing:-2px; }.promo-copy h2 span { color:#0861ec; }.promo-copy>p { max-width:340px;margin:19px 0 26px;color:#405270;font-size:16px;line-height:1.55; }
+        .promo-benefits { display:grid;gap:17px; }.promo-benefit { display:flex;align-items:center;gap:13px;color:#192943; }.benefit-icon { width:44px;height:44px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;background:#e2edff;color:#0759e8;font-size:20px; }.promo-benefit strong { display:block;font-size:13px; }.promo-benefit small { display:block;margin-top:3px;color:#53637e;font-size:11px; }
+        .promo-photo { position:relative;min-width:0;height:min(690px,calc(100vh - 165px));min-height:480px;overflow:hidden;border-radius:24px;background:#e5e8ed;box-shadow:0 18px 40px #12274822; }.promo-photo img { width:100%;height:100%;display:block;object-fit:cover;object-position:center 42%; }.promo-photo::after { content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(9,21,42,.7)); }.photo-caption { position:absolute;z-index:1;right:20px;bottom:22px;left:20px;color:#fff;font-size:22px;font-weight:750;line-height:1.15;text-shadow:0 2px 8px #0008; }
+        .login-container { grid-column:2;grid-row:2;align-self:center;justify-self:center;width:min(calc(100% - 48px),510px);padding:2px;border-radius:24px;background:linear-gradient(145deg,#dce6f5,#fff);box-shadow:0 16px 48px #14284918; }
+        .login-card { padding:42px 40px 34px;border-radius:22px;background:rgba(255,255,255,.95);backdrop-filter:blur(18px);overflow:visible; }.login-card::before { display:none; }
+        .theme-btn,.status,.logo,.divider,.footer { display:none!important; }
+        .login-card h1 { color:#111b32;font-size:38px;letter-spacing:-1.5px;text-align:left; }.login-card .subtitle { margin:8px 0 22px;color:#5b6b86;text-align:left;font-size:15px; }
+        .input-group { margin-bottom:16px; }.input-group>label { margin-bottom:7px;color:#3c4e69;font-size:11px;font-weight:700;letter-spacing:.35px; }.input-wrapper input { height:49px;padding:0 45px 0 43px;border:1px solid #d9e1ed;border-radius:9px;background:#fbfcfe;color:#17233a;font-size:14px; }.input-icon { left:15px;color:#556987;opacity:.8; }.show-password { color:#536681; }
+        .options { margin:4px 0 19px;color:#50617c; }.remember { font-size:12px; }.forgot,.signup a { color:#0759e8; }.login-btn { width:100%;min-height:50px;margin-top:0;border-radius:9px;background:linear-gradient(90deg,#0861ec,#0755d9);box-shadow:0 8px 18px #0759e82b;font-size:15px; }.login-btn::before { display:none; }
+        .signup { margin:22px 0 5px;color:#54637c;font-size:13px;text-align:center; }.signup a { font-weight:750; }.login-card #adminLoginRow { margin-top:12px!important;font-size:11px; }
+        #authMessage { margin:10px 0!important;line-height:1.5; }
+        body.registering { grid-template-columns:1fr;grid-template-rows:70px 1fr 54px;align-items:start;padding:0; }
+        body.registering .promo-panel { display:none; }
+        body.registering .login-container { grid-column:1;grid-row:2;align-self:start;width:min(620px,calc(100% - 30px));margin:26px auto;padding:2px; }
+        body.registering .login-card { padding:34px 38px; }
+        body.registering .register-details { padding:0;margin:8px 0 14px;border:0;background:none; }
+        body.registering .register-details .input-group { margin-bottom:12px; }
+        body.registering .register-details input:not([type="checkbox"]),body.registering .register-details select { height:44px;border-radius:8px;background:#fbfcfe;color:#17233a; }
+        body.registering .register-details .terms-check { color:#455570; }
+        .site-footer { grid-column:1/-1;grid-row:3;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(30px,calc((100vw - 1380px)/2));background:#14243d;color:#d9e4f5; }.site-footer strong { font-size:19px;letter-spacing:-.5px; }.site-footer strong span { color:#55a0ff; }.site-footer small { font-size:11px;color:#c3d0e3; }
+        @media(max-width:1050px) { body { grid-template-columns:minmax(0,1fr) minmax(390px,.9fr); }.promo-panel { grid-template-columns:1fr;padding-left:28px; }.promo-copy>p { margin:12px 0 16px;font-size:14px; }.promo-benefits { gap:10px; }.promo-photo { height:320px;min-height:320px; }.header-links { gap:12px; }.market-header { gap:18px; } }
+        @media(max-width:760px) { body { display:flex;flex-direction:column;min-height:100vh; }.market-header { width:100%;min-height:62px;padding:8px 16px;gap:12px; }.market-logo { font-size:21px; }.header-search { height:38px; }.header-search input { font-size:12px;padding:0 10px; }.header-search button { width:40px; }.header-links { display:none; }.promo-panel { width:100%;padding:26px 18px 12px;grid-template-columns:1fr minmax(130px,.8fr);gap:14px; }.promo-copy h2 { font-size:34px;letter-spacing:-1px; }.promo-copy>p { font-size:12px;line-height:1.4;margin:10px 0 13px; }.promo-benefit { gap:8px; }.benefit-icon { width:33px;height:33px;font-size:15px; }.promo-benefit strong { font-size:11px; }.promo-benefit small { font-size:9px; }.promo-photo { min-height:270px;height:100%;border-radius:16px; }.photo-caption { font-size:15px;left:12px;bottom:14px; }.login-container { width:min(510px,calc(100% - 28px));margin:8px auto 24px; }.login-card { padding:30px 26px; }.login-card h1 { font-size:31px; }.site-footer { width:100%;min-height:54px;padding:10px 18px; }.site-footer small { text-align:right; }body.registering { padding:0; } body.registering .login-container { margin:18px auto; }.site-footer { margin-top:auto; } }
+        @media(max-width:430px) { .header-search input { width:90px; }.promo-panel { grid-template-columns:1fr; }.promo-copy h2 { font-size:32px; }.promo-benefits { grid-template-columns:1fr 1fr; }.promo-photo { min-height:240px;height:280px; }.login-card { padding:27px 20px; }.site-footer strong { font-size:16px; }.site-footer small { font-size:9px; } }
+
+        /* RTXMarket dark gaming theme */
+        .register-details .terms-check input { width:15px;height:15px;min-width:15px;min-height:15px;flex:0 0 15px;margin:2px 0 0;padding:0; }
+        body { grid-template-columns:minmax(0,1.18fr) minmax(440px,.82fr);grid-template-rows:82px minmax(660px,1fr) 64px;background:#080a09;color:#f5f7f4; }
+        .background { background:radial-gradient(ellipse at 42% 55%,#171d13 0,transparent 58%),#080a09; }
+        .market-header { gap:26px;background:rgba(8,9,8,.97);border-bottom:1px solid #242820;padding-left:max(26px,calc((100vw - 1420px)/2));padding-right:max(26px,calc((100vw - 1420px)/2)); }
+        .market-logo { position:relative;display:flex;align-items:center;flex-wrap:wrap;flex:0 0 255px;padding-left:43px;padding-bottom:14px;color:#f5f7f4;font-size:30px;font-weight:800;letter-spacing:-1.1px;line-height:1; }
+        .market-logo .rtx-bag { position:absolute;left:0;top:1px;width:34px;height:43px;display:grid;place-items:center;border:2px solid #7fce00;border-radius:7px;color:#83d600;font-size:23px; }
+        .market-logo .brand-rtx { color:#80d000; }.market-logo small { position:absolute;left:43px;bottom:0;color:#b7bdb2;font-size:9px;font-weight:500;letter-spacing:1.5px; }
+        .header-links { flex:1;display:flex;justify-content:space-around;gap:15px;margin:0; }.header-links a { color:#e4e7e1;font-size:14px;font-weight:500; }.header-links a:hover { color:#8ddb09; }
+        .header-search-icon { width:34px;height:38px;display:grid;place-items:center;border-right:1px solid #343832;padding-right:14px;color:#f3f5f1;text-decoration:none;font-size:24px;line-height:1; }
+        .header-signup-label { color:#bfc3bc;font-size:13px;white-space:nowrap; }.header-signup { padding:9px 25px;border:1px solid #79c800;border-radius:24px;color:#8de000;text-decoration:none;font-size:14px;font-weight:650;white-space:nowrap; }.header-signup:hover { background:#7dcc00;color:#0c1008; }
+        .promo-panel { position:relative;display:block;grid-column:1;grid-row:2;overflow:hidden;padding:0;background:#080a08; }
+        .promo-copy { position:absolute;z-index:2;top:25%;left:5.2%;width:min(250px,34%); }
+        .promo-copy h2 { color:#f7f8f5;font-size:clamp(40px,4.3vw,62px);line-height:.98;letter-spacing:-2px; }.promo-copy h2 span { color:#84d500; }
+        .promo-copy>p { margin:17px 0 34px;color:#e0e3dd;font-size:16px;line-height:1.45; }
+        .promo-benefits { gap:21px; }.promo-benefit { gap:12px;color:#f3f4f0; }.benefit-icon { width:42px;height:42px;border:1px solid #6eb600;border-radius:8px;background:rgba(17,25,8,.78);color:#89d100;font-size:20px; }.promo-benefit strong { font-size:12px; }.promo-benefit small { color:#c6c9c2;font-size:10px; }
+        .promo-photo { position:absolute;z-index:1;top:0;right:0;bottom:0;width:69%;height:auto;min-height:0;border-radius:0;background:#090b09;box-shadow:none; }.promo-photo img { object-fit:cover;object-position:center 43%; }.promo-photo::after { inset:0;background:linear-gradient(90deg,#080a08 0%,rgba(8,10,8,.52) 12%,transparent 48%),linear-gradient(0deg,rgba(5,7,5,.72),transparent 25%); }
+        .photo-caption { right:20px;bottom:22px;left:auto;color:#9be01a;font-size:20px;font-style:italic;font-family:Georgia,serif;text-shadow:0 2px 8px #000; }
+        .login-container { grid-column:2;grid-row:2;z-index:3;width:min(calc(100% - 60px),520px);border:1px solid #2b3029;border-radius:25px;background:rgba(13,15,13,.95);box-shadow:0 20px 54px #0009; }
+        .login-card { padding:47px 40px 34px;border:1px solid #191c18;border-radius:24px;background:rgba(13,15,13,.92);color:#f3f5f0; }.login-card h1 { color:#f5f6f2;font-size:43px;letter-spacing:-1.5px; }.login-card h1 .accent-word { color:#86d600; }.login-card .subtitle { color:#c4c8c0;font-size:16px; }
+        .input-group>label { color:#bfc4ba; }.input-wrapper input { border-color:#353a33;background:#1a1c1a;color:#f4f5f2; }.input-wrapper input::placeholder { color:#92978f; }.input-wrapper input:focus { border-color:#7ac500;box-shadow:0 0 0 3px #7ac50022; }.input-icon,.show-password { color:#e2e5df; }
+        .options { color:#e4e6e1; }.remember { color:#e4e6e1; }.remember input { accent-color:#86d600; }.forgot,.signup a { color:#8bdb00; }
+        .login-btn { background:linear-gradient(100deg,#82ce00,#8cde00);color:#11160b;box-shadow:0 8px 24px #7dd00045;font-weight:800; }.login-btn:hover { filter:brightness(1.08); }
+        .signup { color:#d5d8d2; }.login-card #adminLoginRow a { color:#a8b09f; }.login-card #adminLoginRow a:hover { color:#8bdb00; }
+        #authMessage { color:#ff9b9b!important; }
+        .site-footer { background:#080a09;border-top:1px solid #292d27;color:#dfe2dc;padding-left:max(30px,calc((100vw - 1420px)/2));padding-right:max(30px,calc((100vw - 1420px)/2)); }.site-footer strong { position:relative;padding-bottom:12px;color:#f5f6f3; }.site-footer strong>span { color:#83d400; }.site-footer strong small { position:absolute;left:0;bottom:0;color:#b6bbb2;font-size:7px;font-weight:500;letter-spacing:1px;white-space:nowrap; }.site-footer>small { color:#b9beb5; }
+        body.registering { grid-template-columns:1fr;grid-template-rows:82px 1fr 64px;background:#080a09; }body.registering { background:#080a09; }
+        body.registering .market-header { grid-column:1; }body.registering .header-links,body.registering .header-search-icon,body.registering .header-signup-label,body.registering .header-signup { display:none; }
+        body.registering .login-container { grid-column:1;grid-row:2;width:min(620px,calc(100% - 34px));margin:24px auto; }body.registering .login-card { background:#0d0f0d; }body.registering .promo-panel { display:none; }
+        body.registering .register-details input:not([type="checkbox"]),body.registering .register-details select { border-color:#353a33;background:#1a1c1a;color:#f4f5f2; }
+        body.registering .register-details .terms-check,body.registering .register-details .terms-copy { color:#c3c8be; }
+        @media(max-width:1100px) { body { grid-template-columns:minmax(0,1.05fr) minmax(410px,.95fr); }.market-header { gap:14px; }.market-logo { flex-basis:200px;font-size:25px; }.header-links { gap:10px; }.header-links a { font-size:12px; }.header-signup-label { display:none; }.promo-copy { left:4%;width:32%; }.promo-copy h2 { font-size:clamp(39px,4.5vw,52px); }.promo-photo { width:72%; } }
+        @media(max-width:760px) { body { display:flex;flex-direction:column;min-height:100vh;background:#080a09; }.market-header { min-height:68px;flex-wrap:nowrap;padding:8px 15px;gap:12px; }.market-logo { flex-basis:auto;margin-right:auto;font-size:23px; }.header-links { display:none; }.header-search-icon { width:28px;border:0;padding:0;font-size:23px; }.header-signup-label { display:none; }.header-signup { padding:8px 15px;font-size:12px; }.promo-panel { display:block;width:100%;height:640px;min-height:640px; }.promo-photo { inset:0;width:100%;height:100%;min-height:0;opacity:.76; }.promo-photo::after { background:linear-gradient(90deg,#080a08 0%,rgba(8,10,8,.5) 42%,transparent 100%),linear-gradient(0deg,rgba(5,7,5,.72),transparent 35%); }.promo-copy { top:11%;left:6%;width:44%; }.promo-copy h2 { font-size:clamp(38px,8vw,56px); }.promo-copy>p { margin:13px 0 22px;font-size:14px; }.promo-benefits { gap:13px; }.promo-benefit strong { font-size:11px; }.promo-photo img { object-position:center 44%; }.login-container { width:min(520px,calc(100% - 28px));margin:-90px auto 24px; }.login-card { padding:34px 28px; }.login-card h1 { font-size:36px; }.site-footer { width:100%;min-height:62px;margin-top:auto;padding:10px 18px; }.site-footer>small { text-align:right;font-size:9px; } body.registering .market-header { min-height:68px; } body.registering .login-container { margin:20px auto; } }
+        @media(max-width:480px) { .market-logo { padding-left:35px;font-size:20px; }.market-logo .rtx-bag { width:28px;height:36px;font-size:19px; }.market-logo small { left:35px;font-size:7px; }.header-signup { padding:7px 11px; }.header-search-icon { display:none; }.promo-panel { height:590px;min-height:590px; }.promo-copy { top:8%;width:52%; }.promo-copy h2 { font-size:39px; }.promo-copy>p { font-size:12px; }.promo-benefits { gap:11px; }.benefit-icon { width:34px;height:34px;font-size:16px; }.promo-benefit small { font-size:9px; }.login-container { margin:-70px auto 22px; }.login-card { padding:30px 21px; }.login-card h1 { font-size:32px; }.site-footer strong { font-size:15px; }.site-footer>small { max-width:55%;font-size:8px; } }
+
+        .market-logo .rtx-bag { font-size:0; }
+        .market-logo .rtx-bag::before { content:"";position:absolute;left:7px;bottom:6px;width:16px;height:19px;border:2px solid #82d100;border-radius:3px; }
+        .market-logo .rtx-bag::after { content:"";position:absolute;left:12px;top:8px;width:7px;height:9px;border:2px solid #82d100;border-bottom:0;border-radius:7px 7px 0 0; }
+        .market-header .theme-btn { display:inline-flex!important;align-items:center;justify-content:center;position:static;width:auto;height:38px;margin-left:auto;padding:0 15px;border:1px solid #73bd00;border-radius:20px;background:transparent;color:#8bdd00;box-shadow:none;font:600 12px "Segoe UI",Arial,sans-serif;letter-spacing:.1px; }
+        .market-header .theme-btn:hover { background:#7acb00;color:#11160b;transform:none; }
+        body.light { background:#f2f5f9;color:#17212f; }
+        body.light .background { background:radial-gradient(ellipse at 42% 55%,#e1e9f1 0,transparent 58%),#f2f5f9; }
+        body.light .market-header { background:rgba(255,255,255,.97);border-bottom-color:#d8e0ea; }
+        body.light .market-logo { color:#18212c; }
+        body.light .market-logo small { color:#697582; }
+        body.light .market-header .theme-btn { background:#f5f8ee;color:#457400; }
+        body.light .promo-panel { background:#e7edf3; }
+        body.light .promo-copy h2 { color:#15202d; }
+        body.light .promo-copy>p { color:#435164; }
+        body.light .promo-benefit { color:#1d2a38; }
+        body.light .promo-benefit small { color:#566473; }
+        body.light .benefit-icon { background:#f5f9eb;border-color:#8acb30;color:#5a9800; }
+        body.light .promo-photo::after { background:linear-gradient(90deg,#e7edf3 0%,rgba(231,237,243,.54) 12%,transparent 49%),linear-gradient(0deg,rgba(17,25,34,.56),transparent 25%); }
+        body.light .login-container { border-color:#d4dce6;background:#fff;box-shadow:0 18px 50px #1725381c; }
+        body.light .login-card { border-color:#e5eaf0;background:rgba(255,255,255,.97);color:#17212f; }
+        body.light .login-card h1 { color:#15202d; }
+        body.light .login-card .subtitle { color:#5d6a79; }
+        body.light .input-group>label { color:#3f4d5d; }
+        body.light .input-wrapper input { border-color:#d5dde7;background:#f8fafc;color:#17212f; }
+        body.light .input-wrapper input::placeholder { color:#8290a0; }
+        body.light .input-icon,body.light .show-password { color:#536477; }
+        body.light .options,body.light .remember { color:#465467; }
+        body.light .signup { color:#536172; }
+        body.light .login-card #adminLoginRow a { color:#687484; }
+        body.light .site-footer { border-top-color:#d6dee8;background:#e8edf3;color:#253244; }
+        body.light .site-footer>small { color:#596777; }
+        body.light .site-footer strong { color:#192432; }
+        body.light.registering .register-details input:not([type="checkbox"]),body.light.registering .register-details select { border-color:#d4dce6;background:#f9fbfd;color:#17212f; }
+        body.light.registering .register-details .terms-check,body.light.registering .register-details .terms-copy { color:#536172; }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANIMATED BACKGROUND
+    ========================================== -->
+
+    <div class="background">
+
+
+        <!-- GLOW -->
+
+        <div class="glow"></div>
+
+        <div class="glow2"></div>
+
+
+        <!-- GRID -->
+
+        <div class="grid"></div>
+
+
+        <!-- PARTICLES -->
+
+        <div class="particles">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+        <!-- =====================================
+             FLOATING PICTURES
+
+             Make sure that
+             background-pic.png is beside
+             index.html
+        ====================================== -->
+
+        <img
+            src="background-pic.png"
+            class="floating-pic pic1"
+            alt=""
+        >
+
+        <img
+            src="background-pic.png"
+            class="floating-pic pic2"
+            alt=""
+        >
+
+        <img
+            src="background-pic.png"
+            class="floating-pic pic3"
+            alt=""
+        >
+
+    </div>
+
+
+    <header class="market-header">
+        <a class="market-logo" href="market.html"><span class="rtx-bag" aria-hidden="true"></span><span class="brand-rtx">RTX</span>Market<small>GEAR UP. GAME ON.</small></a>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" type="button" aria-label="Switch to light mode" aria-pressed="false">Light mode</button>
+    </header>
+
+    <section class="promo-panel" aria-label="MarketHub shopping benefits">
+        <div class="promo-copy">
+            <h2>MORE<br>THAN<br><span>GAMING</span></h2>
+            <p>Top brands. Latest tech.<br>Better performance.</p>
+            <div class="promo-benefits">
+                <div class="promo-benefit"><span class="benefit-icon" aria-hidden="true">⬡</span><span><strong>Hardware for Every Build</strong><small>Find your next upgrade</small></span></div>
+                <div class="promo-benefit"><span class="benefit-icon" aria-hidden="true">↗</span><span><strong>Order History</strong><small>Keep purchases in one place</small></span></div>
+                <div class="promo-benefit"><span class="benefit-icon" aria-hidden="true">✓</span><span><strong>Built for Gamers</strong><small>Gear up for what’s next</small></span></div>
+            </div>
+        </div>
+        <div class="promo-photo"><img src="customer-group.jpg" alt="Friends checking out gaming hardware together"><div class="photo-caption">Play.<br>Create.<br>Upgrade.</div></div>
+    </section>
+
+    <!-- =========================================
+         LOGIN CONTAINER
+    ========================================== -->
+
+    <div class="login-container">
+
+
+        <div class="login-card">
+
+
+            <!-- STATUS -->
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                ✦
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>Welcome <span class="accent-word">Back</span></h1>
+
+
+            <p class="subtitle" id="authSubtitle">
+
+                Log in to your RTXMarket account
+
+            </p>
+
+
+            <!-- =================================
+                 LOGIN FORM
+            ================================== -->
+
+            <form
+                id="authForm"
+                onsubmit="login(event)"
+            >
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        EMAIL ADDRESS
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+
+                            ✉
+
+                        </span>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="register-details register-only" id="registerDetails">
+                    <div class="input-group"><label for="registerName">FULL NAME</label><input id="registerName" type="text" maxlength="150" autocomplete="name" placeholder="Your full name"></div>
+                    <div class="input-group"><label for="registerAge">AGE</label><input id="registerAge" type="number" min="1" max="120" inputmode="numeric" placeholder="Your age"></div>
+                    <div class="input-group"><label for="registerSex">SEX</label><select id="registerSex"><option value="">Select an option</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select></div>
+                    <div class="input-group"><label for="registerAddress">ADDRESS</label><input id="registerAddress" type="text" maxlength="1000" autocomplete="street-address" placeholder="Delivery address"></div>
+                    <label class="terms-check"><input id="termsAccepted" type="checkbox"><span>I agree to the Terms and Conditions.</span></label>
+                    <p class="terms-copy">Your details will be used to manage your account and fulfill orders. Keep your address up to date in My Account.</p>
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        PASSWORD
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+
+                            🔒
+
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showBtn"
+                            onclick="showPassword()"
+                        >
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                    >
+
+                        Forgot password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    class="login-btn"
+                    id="loginBtn"
+                    type="submit"
+                >
+
+                    SIGN IN
+
+                </button>
+
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                OR
+
+            </div>
+
+
+            <!-- SIGN UP -->
+
+            <p class="signup" id="accountSignup">
+
+                Don't have an account?
+
+                <a href="#" id="createAccount">
+
+                    Create account
+
+                </a>
+
+            </p>
+
+            <p class="signup" id="adminLoginRow">
+                <a href="#" id="adminLoginToggle">Admin login</a>
+            </p>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                Stockroom customer and admin access
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <footer class="site-footer"><strong><span>▣ RTX</span>Market<small>GEAR UP. GAME ON.</small></strong><small>Building a better tomorrow, together. &nbsp; | &nbsp; RTXMarket © 2024</small></footer>
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+
+        /* =========================================
+           DARK / LIGHT MODE
+        ========================================= */
+
+        function toggleTheme() {
+            const isLight = document.body.classList.toggle("light");
+            const button = document.getElementById("themeBtn");
+            button.textContent = isLight ? "Dark mode" : "Light mode";
+            button.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+            button.setAttribute("aria-pressed", String(isLight));
+        }
+        /* =========================================
+           SHOW PASSWORD
+        ========================================= */
+
+        function showPassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.getElementById("showBtn");
+
+
+            if (
+                password.type === "password"
+            ) {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+
+        /* =========================================
+           LOGIN EFFECT
+        ========================================= */
+
+        let authMode = "login";
+        let adminMode = false;
+        const authMessage = document.createElement("p");
+        authMessage.id = "authMessage";
+        authMessage.setAttribute("role", "alert");
+        authMessage.style.cssText = "min-height:20px;color:#b42345;font-size:13px;text-align:center;margin:10px 0";
+        document.getElementById("authForm").after(authMessage);
+
+        function setRegistrationFields(enabled) {
+            document.getElementById("registerDetails").style.display = enabled ? "block" : "none";
+            document.body.classList.toggle("registering", enabled);
+            document.querySelector(".options").style.display = enabled ? "none" : "";
+            ["registerName", "registerAge", "registerSex", "registerAddress", "termsAccepted"].forEach((id) => {
+                document.getElementById(id).required = enabled;
+            });
+        }
+
+        document.getElementById("createAccount").addEventListener("click", (event) => {
+            event.preventDefault();
+            authMode = authMode === "login" ? "register" : "login";
+            document.getElementById("loginBtn").textContent = authMode === "register" ? "CREATE ACCOUNT" : "SIGN IN";
+            document.getElementById("createAccount").textContent = authMode === "register" ? "Sign in" : "Create account";
+            document.querySelector(".signup").firstChild.textContent = authMode === "register" ? "Already have an account? " : "Don't have an account? ";
+            document.getElementById("authSubtitle").textContent = authMode === "register" ? "Create an account to shop the market" : "Enter your credentials to continue";
+            document.getElementById("password").minLength = authMode === "register" ? 8 : 0;
+            document.getElementById("password").autocomplete = authMode === "register" ? "new-password" : "current-password";
+            setRegistrationFields(authMode === "register");
+            authMessage.textContent = authMode === "register" ? "New accounts are customer accounts." : "";
+        });
+
+        document.getElementById("adminLoginToggle").addEventListener("click", (event) => {
+            event.preventDefault();
+            adminMode = !adminMode;
+            authMode = "login";
+            document.getElementById("loginBtn").textContent = adminMode ? "ADMIN SIGN IN" : "SIGN IN";
+            document.getElementById("createAccount").textContent = "Create account";
+            document.querySelector(".signup").firstChild.textContent = "Don't have an account? ";
+            document.getElementById("authSubtitle").textContent = adminMode ? "Sign in to manage store inventory" : "Enter your credentials to continue";
+            document.getElementById("password").minLength = 0;
+            document.getElementById("password").autocomplete = "current-password";
+            setRegistrationFields(false);
+            document.getElementById("adminLoginToggle").textContent = adminMode ? "Customer login" : "Admin login";
+            document.getElementById("adminLoginRow").style.marginTop = adminMode ? "18px" : "0";
+            document.getElementById("accountSignup").style.display = adminMode ? "none" : "";
+            authMessage.textContent = "";
+        });
+
+        async function login(event) {
+            event.preventDefault();
+            const button = document.getElementById("loginBtn");
+            button.disabled = true;
+            button.textContent = authMode === "register" ? "CREATING ACCOUNT..." : adminMode ? "ADMIN SIGNING IN..." : "SIGNING IN...";
+            authMessage.textContent = "";
+            try {
+                const authAction = authMode === "register" ? "register" : adminMode ? "admin-login" : "login";
+                const response = await fetch(`auth.php?action=${authAction}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                    body: JSON.stringify({
+                        email: document.getElementById("email").value,
+                        password: document.getElementById("password").value,
+                        fullName: document.getElementById("registerName").value.trim(),
+                        age: document.getElementById("registerAge").value,
+                        sex: document.getElementById("registerSex").value,
+                        address: document.getElementById("registerAddress").value.trim(),
+                        termsAccepted: document.getElementById("termsAccepted").checked
+                    })
+                });
+                let result;
+                try {
+                    result = await response.json();
+                } catch (parseError) {
+                    throw new Error("PHP did not respond. Start Apache and MySQL in XAMPP, then open http://localhost/progg3/ instead of the Live Server address.");
+                }
+                if (!response.ok) throw new Error(result.error || "Authentication failed.");
+                window.location.href = result.user.role === "admin" ? "inventory.html" : "market.html";
+            } catch (error) {
+                authMessage.textContent = error.message || "Could not connect to the server. Start Apache and MySQL in XAMPP.";
+                button.textContent = authMode === "register" ? "CREATE ACCOUNT" : adminMode ? "ADMIN SIGN IN" : "SIGN IN";
+                button.disabled = false;
+            }
+        }
+
+        fetch("auth.php?action=me", { cache: "no-store" }).then((response) => response.json()).then((result) => {
+            if (result.authenticated) window.location.replace(result.user.role === "admin" ? "inventory.html" : "market.html");
+        }).catch(() => {});
+
+        if (location.port === "5500") {
+            authMessage.textContent = "Accounts need PHP. Start Apache and MySQL in XAMPP, then open http://localhost/progg3/.";
+        }
+    </script>
+
+
+</body>
+
+</html>
